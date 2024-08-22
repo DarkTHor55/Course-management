@@ -1,25 +1,26 @@
 package com.darkthor.course.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CourseInstance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int year;
+    @NotNull(message = "Year is required")
+    private Integer year;
 
-    private int semester;
+    @NotNull(message = "Semester is required")
+    private Integer semester;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
