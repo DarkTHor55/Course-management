@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 
-const CreateInstance = () => {
+const CreateCourseInstancePage = () => {
   const [year, setYear] = useState('');
   const [semester, setSemester] = useState('');
   const [selectedCourseId, setSelectedCourseId] = useState('');
@@ -92,7 +92,7 @@ const CreateInstance = () => {
               <option value="" disabled>Select a course</option>
               {courses.map((course) => (
                 <option key={course.id} value={course.id}>
-                  {course.title}
+                  {course.title} ({course.courseCode})
                 </option>
               ))}
             </select>
@@ -162,4 +162,4 @@ const CreateInstance = () => {
   );
 };
 
-export default CreateInstance;
+export default CreateCourseInstancePage;

@@ -5,7 +5,7 @@ import com.darkthor.course.Model.Course;
 import com.darkthor.course.Model.CourseInstance;
 import com.darkthor.course.Repository.CourseInstanceRepository;
 import com.darkthor.course.Repository.CourseRepository;
-import com.darkthor.course.Request.RequestCourseInstance;
+import com.darkthor.course.Request.CourseInstanceRequest;
 import com.darkthor.course.Service.ICourseInstanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,17 +19,17 @@ public class CourseInstanceServiceIml implements ICourseInstanceService {
 
 
     @Override
-    public CourseInstance create(RequestCourseInstance requestCourseInstance) throws CourseException {
-        if (requestCourseInstance == null) {
+    public CourseInstance create(CourseInstanceRequest courseInstanceRequest) throws CourseException {
+        if (courseInstanceRequest == null) {
             throw new IllegalArgumentException("Request data is null");
         }
 
-        Course course = courseRepository.findById(requestCourseInstance.getCourseId())
-                .orElseThrow(() -> new CourseException("Course with ID " + requestCourseInstance.getCourseId() + " not found"));
+        Course course = courseRepository.findById(courseInstanceRequest.getCourseId())
+                .orElseThrow(() -> new CourseException("Course with ID " + courseInstanceRequest.getCourseId() + " not found"));
 
         CourseInstance courseInstance = CourseInstance.builder()
-                .year(requestCourseInstance.getYear())
-                .semester(requestCourseInstance.getSemester())
+                .year(courseInstanceRequest.getYear())
+                .semester(courseInstanceRequest.getSemester())
                 .course(course)
                 .build();
 

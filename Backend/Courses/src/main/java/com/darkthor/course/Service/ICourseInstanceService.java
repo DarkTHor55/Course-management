@@ -2,12 +2,12 @@ package com.darkthor.course.Service;
 
 import com.darkthor.course.Exception.CourseException;
 import com.darkthor.course.Model.CourseInstance;
-import com.darkthor.course.Request.RequestCourseInstance;
+import com.darkthor.course.Request.CourseInstanceRequest;
 
 import java.util.List;
 
 public interface ICourseInstanceService {
-    CourseInstance create(RequestCourseInstance requestCourseInstance) throws CourseException;
+    CourseInstance create(CourseInstanceRequest courseInstanceRequest) throws CourseException;
 
     List<CourseInstance> getAllInstancesByYear(int year);
 

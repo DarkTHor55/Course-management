@@ -3,7 +3,7 @@ package com.darkthor.course.Service.Impl;
 import com.darkthor.course.Exception.CourseException;
 import com.darkthor.course.Model.Course;
 import com.darkthor.course.Repository.CourseRepository;
-import com.darkthor.course.Request.RequestCourse;
+import com.darkthor.course.Request.CourseRequest;
 import com.darkthor.course.Service.ICourseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +17,13 @@ public class CourseServiceImpl implements ICourseService {
     private final CourseRepository courseRepository;
 
     @Override
-    public Course craeteCourse(@Valid RequestCourse requestCourse) {
-        if (requestCourse == null) return null;
+    public Course createCourse(@Valid CourseRequest courseRequest) {
+        if (courseRequest == null) return null;
         Course course = Course.builder()
-                .title(requestCourse.getTitle())
-                .courseCode(requestCourse.getCourseCode())
-                .description(requestCourse.getDescription())
-                .instances(requestCourse.getInstances())
+                .title(courseRequest.getTitle())
+                .courseCode(courseRequest.getCourseCode())
+                .description(courseRequest.getDescription())
+                .instances(courseRequest.getInstances())
                 .build();
         return courseRepository.save(course);
     }

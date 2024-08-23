@@ -2,7 +2,7 @@ package com.darkthor.course.Controller;
 
 import com.darkthor.course.Exception.CourseException;
 import com.darkthor.course.Model.Course;
-import com.darkthor.course.Request.RequestCourse;
+import com.darkthor.course.Request.CourseRequest;
 import com.darkthor.course.Response.ResponseCourse;
 import com.darkthor.course.Service.Impl.CourseServiceImpl;
 import jakarta.validation.Valid;
@@ -18,19 +18,17 @@ import java.util.Objects;
 @RequestMapping("/api/courses")
 @RequiredArgsConstructor
 public class CourseController {
+
     private final CourseServiceImpl courseService;
 
     @PostMapping
-    public ResponseEntity<ResponseCourse> create(final @RequestBody @Valid RequestCourse course) {
-        ResponseCourse response = new ResponseCourse();
-        Course course1 = courseService.craeteCourse(course);
+    public ResponseEntity<ResponseCourse> create(final @RequestBody @Valid CourseRequest course) {
+        Course course1 = courseService.createCourse(course);
         if (Objects.isNull(course1)) {
-            response.setStatus(false);
-            response.setMessage("Course creation failed");
+            ResponseCourse response = ResponseCourse.builder().status(false).message("Course creation failed").build();
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         } else {
-            response.setStatus(true);
-            response.setMessage("Course created successfully");
+            ResponseCourse response = ResponseCourse.builder().status(true).message("Course created successfully").build();
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         }
     }

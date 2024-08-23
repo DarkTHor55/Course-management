@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RequestCourseInstance {
+public class CourseInstanceRequest {
     private Integer year;
     private Integer semester;
     private Long courseId;

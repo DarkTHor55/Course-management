@@ -2,7 +2,7 @@ package com.darkthor.course.Controller;
 
 import com.darkthor.course.Exception.CourseException;
 import com.darkthor.course.Model.CourseInstance;
-import com.darkthor.course.Request.RequestCourseInstance;
+import com.darkthor.course.Request.CourseInstanceRequest;
 import com.darkthor.course.Response.ResponseCourseInstance;
 import com.darkthor.course.Service.Impl.CourseInstanceServiceIml;
 import jakarta.validation.Valid;
@@ -20,16 +20,13 @@ public class CourseInstanceController {
     private final CourseInstanceServiceIml courseInstanceService;
 
     @PostMapping
-    public ResponseEntity<ResponseCourseInstance> create(final @RequestBody @Valid RequestCourseInstance courseInstance) throws CourseException {
+    public ResponseEntity<ResponseCourseInstance> create(final @RequestBody @Valid CourseInstanceRequest courseInstance) throws CourseException {
         CourseInstance courseInstance1 = courseInstanceService.create(courseInstance);
-        ResponseCourseInstance responseCourseInstance = new ResponseCourseInstance();
         if (Objects.isNull(courseInstance1)) {
-            responseCourseInstance.setStatus(false);
-            responseCourseInstance.setMessage("CourseInstance is not created");
+            ResponseCourseInstance responseCourseInstance = ResponseCourseInstance.builder().status(false).message("CourseInstance is not created").build();
             return ResponseEntity.badRequest().body(responseCourseInstance);
         } else {
-            responseCourseInstance.setStatus(true);
-            responseCourseInstance.setMessage("CourseInstance is created successfully");
+            ResponseCourseInstance responseCourseInstance = ResponseCourseInstance.builder().status(true).message("CourseInstance is created successfully").build();
             return ResponseEntity.ok().body(responseCourseInstance);
         }
     }

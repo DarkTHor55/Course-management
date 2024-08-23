@@ -1,9 +1,6 @@
 package com.darkthor.course.Request;
 
 import com.darkthor.course.Model.CourseInstance;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -16,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RequestCourse {
+public class CourseRequest {
     @NotEmpty(message = "Title is required")
     @Size(max = 100, message = "Title cannot exceed 100 characters")
     private String title;
