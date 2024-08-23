@@ -6,14 +6,14 @@ import com.darkthor.course.Model.CourseInstance;
 import com.darkthor.course.Repository.CourseInstanceRepository;
 import com.darkthor.course.Repository.CourseRepository;
 import com.darkthor.course.Request.RequestCourseInstance;
-import com.darkthor.course.Service.CourseInstanceService;
+import com.darkthor.course.Service.ICourseInstanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 @RequiredArgsConstructor
-public class CourseInstanceServiceIml implements CourseInstanceService {
+public class CourseInstanceServiceIml implements ICourseInstanceService {
     private final CourseRepository courseRepository;
     private final CourseInstanceRepository courseInstanceRepository;
 
@@ -53,7 +53,7 @@ public class CourseInstanceServiceIml implements CourseInstanceService {
 
     @Override
     public boolean deleteCourseInstance(int year, int semester, Long id) {
-        if(courseInstanceRepository.findByYearAndSemesterAndId(year, semester, id).isEmpty()){
+        if (courseInstanceRepository.findByYearAndSemesterAndId(year, semester, id).isEmpty()) {
             return false;
         }
         courseInstanceRepository.deleteById(id);

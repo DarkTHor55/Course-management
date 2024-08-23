@@ -4,7 +4,7 @@ import com.darkthor.course.Exception.CourseException;
 import com.darkthor.course.Model.Course;
 import com.darkthor.course.Repository.CourseRepository;
 import com.darkthor.course.Request.RequestCourse;
-import com.darkthor.course.Service.CourseService;
+import com.darkthor.course.Service.ICourseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CourseServiceImpl implements CourseService {
+public class CourseServiceImpl implements ICourseService {
     private final CourseRepository courseRepository;
+
     @Override
     public Course craeteCourse(@Valid RequestCourse requestCourse) {
-        if (requestCourse == null)return null;
-        Course course= Course.builder()
+        if (requestCourse == null) return null;
+        Course course = Course.builder()
                 .title(requestCourse.getTitle())
                 .courseCode(requestCourse.getCourseCode())
                 .description(requestCourse.getDescription())
@@ -40,7 +41,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public boolean deleteCourseById(Long id) {
-        if (!courseRepository.existsById(id))return false;
+        if (!courseRepository.existsById(id)) return false;
         else {
             courseRepository.deleteById(id);
             return true;

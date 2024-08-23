@@ -7,7 +7,7 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
-public interface CourseService {
+public interface ICourseService {
     Course craeteCourse(@Valid RequestCourse requestCourse);
 
     List<Course> getAllCourses();

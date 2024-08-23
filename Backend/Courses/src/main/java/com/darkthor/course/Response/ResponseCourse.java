@@ -8,6 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ResponseCourse {
-    private boolean status ;
+    private boolean status;
     private String message;
 }
